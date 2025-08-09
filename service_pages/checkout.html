@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FlashMoving Pros Booking & Payment</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../../../../CSS/checkout.css">
+  <script src="https://js.stripe.com/v3/"></script>
+  <!-- Calendly embed assets -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+</head>
+
+<body>
+  
+
+  <h2>Book & Pay for Your Moving Service</h2>
+
+<form id="payment-form">
+  
+    <div id="order-summary">
+  <h3>
+    <span style="vertical-align:middle;">🧾</span> Order Summary
+  </h3>
+  <table>
+    <tr>
+      <td>👤 <strong>Name:</strong></td>
+      <td><span id="summary-name"></span> - <span id="summary-business"></span></td>
+    </tr>
+    <tr>
+      <td>✉️ <strong>Email:</strong></td>
+      <td><span id="summary-email"></span></td>
+    </tr>
+    <tr>
+      <td>📞 <strong>Phone:</strong></td>
+      <td><span id="summary-phone"></span></td>
+    </tr>
+    <tr>
+      <td>🏠 <strong>Address:</strong></td>
+      <td><span id="summary-address"></span></td>
+    </tr>
+     <tr>
+      <td>📦 <strong>Drop off Address:</strong></td>
+      <td><span id="summary-dropoff"></span></td>
+    </tr>
+    <tr>
+      <td>🧹 <strong>Service:</strong></td>
+      <td><span id="summary-service"></span></td>
+    </tr>
+    <tr>
+      <td>📝 <strong>Description:</strong></td>
+      <td><span id="summary-description"></span></td>
+    </tr>
+    <tr>
+      <td>💲 <strong>Total:</strong></td>
+      <td>$<span id="summary-total"></span></td>
+    </tr>
+     <td></td>
+  <td style="font-size: 0.9em; color: #666;">
+    (2.5 hr minimum deposit)
+  </td>
+  </table>
+</div>
+
+   <hr style="margin:20px 0;">
+
+<!-- Calendly Wrapper -->
+<div class="calendly-wrapper">
+  <div class="calendly-inline-widget"
+       data-url="https://calendly.com/tripleactioncleaningsolutions/new-meeting"
+       style="min-width:320px;height:700px;">
+  </div>
+</div>
+
+
+
+
+    <div id="service-summary"></div>
+
+    <label for="cardholder-name">Cardholder Name</label>
+    <input type="text" id="cardholder-name" required>
+
+    <label for="card-element">Card Details</label>
+    <div id="card-element"></div>
+    <div id="card-errors" role="alert"></div>
+
+<div style="margin: 15px 0;">
+  <label for="disclaimer" style="cursor:pointer;">
+    <input type="checkbox" id="disclaimer" disabled required style="vertical-align: middle; margin-right: 8px;">
+    I have read and agree to the <a href="/terms" target="_blank" id="terms-link">terms of service</a>.
+  </label>
+</div>
+<script>
+  document.getElementById('terms-link').addEventListener('click', function() {
+    document.getElementById('disclaimer').disabled = false;
+  });
+</script>
+
+    <button type="submit">Confirm & Pay</button>
+</form>
+
+<input type="hidden" id="calendly-confirmed" value="false">
+
+
+<script src="/service_js/pay-system.js"></script>
+<script src="/service_js/display-system.js"></script>
+<script src="/service_js/checkout.js"></script>
+
+</html>

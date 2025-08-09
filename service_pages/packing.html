@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Packing & Unpacking Services</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../../../../CSS/universal.css">
+  <link rel="stylesheet" href="../../../../../../CSS/responsive22.css">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Packing & Unpacking</h1>
+    <p>Professional packing and unpacking services for homes, offices, and specialty items — handled with care from start to finish.</p>
+  </header>
+
+  <div id="form-container">
+    <!-- Contact Form -->
+    <section>
+      <h2>Contact Information</h2>
+      <label for="full-name">Full Name:</label>
+      <input type="text" id="full-name" name="full-name" placeholder="Enter your full name">
+
+      <label for="phone-number">Phone Number:</label>
+      <input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number">
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email address">
+    </section>
+
+    <!-- Job Details Form -->
+    <section>
+      <h2>Enter Job Details</h2>
+
+      <!-- PICK-UP: Mapbox Geocoder -->
+      <label for="pickup-address">Service Address:</label>
+      <div id="geocoder" style="margin-bottom: 15px;"></div>
+
+      <!-- Crew Size -->
+      <label for="crew-size">Choose Your Crew:</label>
+      <select id="crew-size" name="crew-size">
+        <option value="">Select crew size</option>
+        <option value="1-2">1–2 packers — $150/hr</option>
+        <option value="3">3 packers — $225/hr</option>
+      </select><br><br>
+
+      <label for="job-date">Preferred Service Date:</label>
+      <input type="date" id="job-date" name="job-date"><br><br>
+
+      <label for="service-type">Type of Service:</label>
+      <select id="service-type" name="service-type">
+        <option value="">Select one</option>
+        <option value="packing">Packing Only</option>
+        <option value="unpacking">Unpacking Only</option>
+        <option value="both">Both Packing & Unpacking</option>
+      </select><br><br>
+
+      <label for="box-count">Approximate Number of Boxes:</label>
+      <input type="number" id="box-count" name="box-count" min="0" placeholder="e.g., 40"><br><br>
+
+      <label for="special-items">Anything we need to know?</label>
+      <textarea id="special-items" name="special-items" placeholder="Fragile items, antiques, electronics, labeling preferences, or access instructions."></textarea><br><br>
+
+      <label for="photo-upload">Upload photos (optional):</label>
+      <input type="file" id="photo-upload" name="photo-upload" accept="image/*,.pdf" multiple><br><br>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map-container">
+      <div id="map"></div>
+      <p id="mileage-distance">Distance from HQ: 0 miles</p>
+      <p style="font-size: 0.85em; color: #777;"></p>
+    </section>
+
+    <section style="grid-column: span 3; text-align: center;">
+      <button id="book-services-button" style="
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        white-space: nowrap;
+        max-width: 100%;
+      ">
+        Ready to Book Your Service
+      </button>
+
+      <!-- Green Box Message -->
+      <div class="green-box">
+        <h3>We pack it right.</h3>
+        <p>Thanks for choosing FlashMoving Pros. Our packing experts protect your belongings for safe transport and quick setup at your new location.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Shared scripts -->
+  <script src="/service_js/book-now-redirect.js"></script>
+  <script src="/service_js/universal-mileage.js"></script>
+  <script src="/service_js/mapbox.js"></script>
+  <script src="/service_js/errordisplayer.js"></script>
+  <script src="/service_js/cost-caculator.js"></script>
+  <script src="/service_js/TF2.js"></script>
+
+</body>
+
+</html>

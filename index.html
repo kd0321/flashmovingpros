@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FlashMoving Pros</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="CSS/homepage.css">
+    <link rel="stylesheet" href="CSS/responsive.css">
+</head>
+<body>
+  <!-- Header -->
+  <header style="display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background-color:#228B22;color:white;">
+    <!-- Left: Brand -->
+    <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;position:relative;">
+      <div style="position:relative;">
+        <button style="background:none;border:none;color:#fff;font-size:20px;font-weight:bold;cursor:pointer;padding:0;display:flex;align-items:center;">
+          FlashMoving Pros &#9662;
+        </button>
+      </div>
+      <p style="margin:4px 0 0 0;font-size:14px;">Professional Local & Interstate Labor-Only Moving Services</p>
+    </div>
+
+    <!-- Right: Nav -->
+    <nav style="flex-shrink:0;display:flex;gap:15px;">
+      <ul style="list-style:none;display:flex;gap:15px;margin:0;padding:0;">
+        <li id="about" style="cursor:pointer;background-color:white;padding:8px 12px;border-radius:5px;color:#228B22;font-size:14px;">About</li>
+        <li id="show" style="cursor:pointer;background-color:white;padding:8px 12px;border-radius:5px;color:#228B22;font-size:14px; display: none;">Why Choose Us</li>
+        <li id="referral" style="cursor:pointer;background-color:white;padding:8px 12px;border-radius:5px;color:#228B22;font-size:14px; display: none;">Refer & Earn</li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" style="background:#f0fff0;">
+    <div class="hero-text" style="text-align:center;padding:50px 20px;">
+      <h2 style="margin:0 0 8px 0;">Expert Movers for Homes & Offices</h2>
+      <p style="margin:0 0 8px 0;">On-time. Careful. Affordable. Serving the Tri-State area — Local moves or interstate labor-only moves (customer provides the vehicle)</p>
+      <p style="margin:0 0 24px 0;font-weight:bold;font-size:16px;">Call Us Today: (555) 123-4567</p>
+
+      <div style="margin-top:30px;">
+        <p style="font-size:16px;font-weight:bold;margin-bottom:16px;color:#228B22;">
+          <span style="font-size:20px;font-weight:bold;color:#228B22;">Choose a moving service:</span>
+        </p>
+        <div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap;">
+          <a href="#moving-services" style="background-color:#ffcc00;padding:12px 20px;color:#228B22;border-radius:5px;text-decoration:none;font-weight:bold;">View Services</a>
+          <a href="#quote" style="background-color:#ffcc00;padding:12px 20px;color:#228B22;border-radius:5px;text-decoration:none;font-weight:bold;">Get a Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="moving-services" class="service-section" style="padding:60px 20px;">
+    <h2 style="text-align:center;font-size:28px;margin-bottom:40px;color:#228B22;">Moving Services</h2>
+    <div class="service-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
+      <div class="service-card" id="residential-moving" style="border:1px solid #e6e6e6;border-radius:8px;padding:16px;">
+        <h3>Residential Moving</h3>
+        <p>Full-service local home moves, from studio apartments to multi-bedroom houses.</p>
+      </div>
+
+      <div class="service-card" id="commercial-moving" style="border:1px solid #e6e6e6;border-radius:8px;padding:16px;">
+        <h3>Commercial / Office Moving</h3>
+        <p>Minimal downtime local relocations for offices, retail, and small warehouses.</p>
+      </div>
+
+      <div class="service-card" id="loading-unloading" style="border:1px solid #e6e6e6;border-radius:8px;padding:16px;">
+        <h3>Loading & Unloading</h3>
+        <p>Labor only for trucks, PODs, containers, and storage units. Available for interstate moves — we can follow in a separate vehicle or ride with you when you provide the truck.</p>
+      </div>
+
+      <div class="service-card" id="packing-unpacking" style="border:1px solid #e6e6e6;border-radius:8px;padding:16px;">
+        <h3>Packing & Unpacking</h3>
+        <p>Professional packing, labeling, and room-by-room setup at destination.</p>
+      </div>
+
+      <div class="service-card" id="appliance-moving" style="border:1px solid #e6e6e6;border-radius:8px;padding:16px;">
+        <h3>Appliance Moving</h3>
+        <p>Refrigerators, washers, dryers & more. Disconnect/reconnect available if offered.</p>
+      </div>
+
+      <div class="service-card" id="specialty-items" style="border:1px solid #e6e6e6;border-radius:8px;padding:16px;">
+        <h3>Specialty Item Moving</h3>
+        <p>Pianos, safes, antiques, and high-value items with extra protection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote CTA -->
+  <section id="quote" style="padding:40px 20px;text-align:center;background:#f7fff7;border-top:1px solid #e6ffe6;border-bottom:1px solid #e6ffe6;">
+    <h3 style="margin:0 0 8px 0;color:#228B22;">Ready to move?</h3>
+    <p style="margin:0 0 16px 0;">Tell us what you need and get a fast, guaranteed estimate.</p>
+    <a href="#" style="display:inline-block;background:#228B22;color:#fff;text-decoration:none;padding:12px 20px;border-radius:6px;font-weight:600;">Start Your Quote</a>
+  </section>
+
+  <!-- Scripts -->
+  <script src="COMPONENTS/scroll.js"></script>
+  <script src="COMPONENTS/script.js"></script>
+  <script src="COMPONENTS/footer-inject.js"></script>
+  
+</body>
+</html>

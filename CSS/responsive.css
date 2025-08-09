@@ -1,0 +1,79 @@
+/* === Mobile-first responsive overrides === */
+
+/* General reset */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+img, video { max-width: 100%; height: auto; display: block; }
+
+/* Header: wrap on small screens */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+header > nav ul {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+header li { font-size: 14px; line-height: 1; }
+
+/* Hero */
+.hero { padding: 40px 16px; }
+.hero .hero-text { max-width: 1000px; margin: 0 auto; }
+.hero a { display: inline-block; margin: 6px 8px; }
+
+/* Service sections */
+.service-section { padding: 40px 16px; }
+.service-section h2 { margin: 0 0 24px 0; }
+
+/* Cards: keep 4 columns desktop, step down for smaller screens */
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 1200px) {
+  .service-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .service-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .service-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Service card styling */
+.service-card {
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+/* Tap targets */
+a, button, li { touch-action: manipulation; }
+a, button { min-height: 44px; line-height: 1.2; }
+
+/* Type scales down nicely */
+h2 { font-size: clamp(22px, 3.2vw, 28px); }
+h3 { font-size: clamp(18px, 2.6vw, 22px); }
+p, li, a { font-size: clamp(14px, 2.4vw, 16px); }
+
+/* Small device adjustments */
+@media (max-width: 900px) {
+  header { flex-direction: column; align-items: flex-start; }
+  header > nav ul { gap: 8px; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 28px 12px; }
+  .service-card { padding: 14px; }
+}

@@ -1,0 +1,95 @@
+ body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input, select, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    #card-element {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    #card-errors {
+      color: red;
+      margin-bottom: 10px;
+    }
+    /* Order Summary Styles */
+#order-summary {
+  background: #fff;
+  padding: 22px 24px 18px 24px;
+  border-radius: 12px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 12px rgba(40,167,69,0.07), 0 1.5px 4px rgba(0,0,0,0.04);
+  border-left: 5px solid #28a745;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#order-summary h3 {
+  margin-top: 0;
+  color: #28a745;
+  letter-spacing: 1px;
+  font-size: 1.25em;
+  text-align: center;   /* <-- Add this line */
+}
+#order-summary table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1em;
+}
+#order-summary td {
+  padding: 6px 0;
+}
+#order-summary td:first-child {
+  color: #555;
+}
+#order-summary td:last-child {
+  text-align: right;
+}
+#order-summary tr:last-child td {
+  padding-top: 10px;
+  color: #28a745;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#order-summary tr:last-child td:first-child {
+  color: #222;
+}
+/* Fix checkbox display for disclaimer */
+input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  margin: 0 8px 0 0;
+  vertical-align: middle;
+  padding: 0;
+}

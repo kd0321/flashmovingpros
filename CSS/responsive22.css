@@ -1,0 +1,76 @@
+/* Mobile-only overrides for service pages.
+   This file does NOTHING above 768px. Desktop stays exactly the same. */
+
+@media (max-width: 768px) {
+
+  /* Main grid stacks into one column */
+  #form-container {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 12px !important;
+    max-width: 100% !important;
+  }
+
+  /* Section padding tightened a bit on small screens */
+  #form-container section,
+  .form-section {
+    padding: 12px !important;
+  }
+
+  /* Forms stack neatly */
+  #cleanup-form,
+  .form-section form {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Inputs fill the width */
+  #form-container input[type="text"],
+  #form-container input[type="tel"],
+  #form-container input[type="email"],
+  #form-container input[type="number"],
+  #form-container input[type="file"],
+  #form-container select,
+  #form-container textarea {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Buttons full-width on mobile */
+  #form-container button,
+  #form-container .btn {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Map behaves on small screens */
+  #map-container,
+  #map {
+    width: 100% !important;
+    min-height: 320px !important;
+  }
+
+  /* Mapbox geocoder fits screen */
+  #geocoder,
+  .mapboxgl-ctrl-geocoder {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Media never overflows */
+  #form-container img,
+  #form-container video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Tables scroll instead of breaking layout */
+  #form-container table {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+}
