@@ -2,55 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../../../../../CSS/responsive22.css">
   <title>Thank You - Payment Successful</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f6f9fc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
+    :root{
+      --bg1:#0f172a;
+      --bg2:#1e293b;
+      --card:#0b1220aa;
+      --accent:#22d3ee;
+      --accent-2:#38bdf8;
+      --text:#e2e8f0;
     }
-    .thankyou-box {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
-      max-width: 400px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(60% 80% at 20% 20%, var(--bg2), var(--bg1));
+      color:var(--text);
+      display:flex;align-items:center;justify-content:center;
     }
-    h1 {
-      color: #32325d;
-      margin-bottom: 0.5rem;
+    .wrap{
+      width:min(720px, 92vw);
+      padding:clamp(20px, 3vw, 36px);
+      background: var(--card);
+      border:1px solid rgba(148,163,184,.2);
+      border-radius:24px;
+      backdrop-filter: blur(10px);
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      text-align:center;
     }
-    p {
-      color: #555;
-      margin-top: 0;
+    .check{
+      width:78px;height:78px;border-radius:9999px;
+      margin:0 auto 16px;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#0b1220;font-size:40px;font-weight:900;
+      box-shadow:0 8px 30px rgba(56,189,248,.45);
     }
-    .btn {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.75rem 1.5rem;
-      background: #6772e5;
-      color: white;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .btn:hover {
-      background: #5469d4;
-    }
+    h1{font-size:clamp(26px,3.2vw,36px);margin:.25rem 0 0.5rem}
+    p.lead{opacity:.9;margin:.25rem 0 1.25rem}
+    .foot{margin-top:16px;opacity:.7;font-size:.9rem}
   </style>
 </head>
 <body>
-  <div class="thankyou-box">
-    <h1>🎉 Thank You!</h1>
-    <p>Your booking and payment were successful.</p>
-    <p>A confirmation email has been sent to you.</p>
-    <a class="btn" href="/">Return to Home</a>
-  </div>
+  <main class="wrap">
+    <div class="check">✓</div>
+    <h1>Thank you! Payment confirmed.</h1>
+    <p class="lead">Your booking has been received. We truly appreciate your trust in our services.</p>
+    <p class="lead">Our team will contact you shortly to finalize the details.</p>
+  </main>
 </body>
 </html>
