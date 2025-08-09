@@ -60,7 +60,7 @@ document.getElementById("payment-form").addEventListener("submit", async (e) => 
   if (paymentIntent && paymentIntent.status === "succeeded") {
     // Success
     alert("Booking and payment successful!");
-    window.location.href = "/service_pages/Thanks";
+    window.location.href = "/service_pages/Thanks.html";
   } else {
     document.getElementById("card-errors").textContent =
       `Payment status: ${paymentIntent?.status || "unknown"}.`;
