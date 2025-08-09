@@ -1,55 +1,45 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// netlify/functions/intent.js
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+const CORS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type,Authorization",
+  "Access-Control-Allow-Methods": "POST,OPTIONS",
+};
 
 exports.handler = async (event) => {
-  console.log("Function triggered");
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers: CORS, body: "" };
+  }
 
   if (!process.env.STRIPE_SECRET_KEY) {
-    console.error("Missing Stripe secret key");
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ success: false, error: "Missing Stripe secret key" }),
-    };
+    return { statusCode: 500, headers: CORS, body: JSON.stringify({ error: "Missing Stripe secret key" }) };
   }
 
   try {
-    const data = JSON.parse(event.body || '{}');
+    const { amount, currency = "usd", name = "", email = "" } = JSON.parse(event.body || "{}");
 
-    const { amount, payment_method } = data;
-
-    if (!payment_method || !amount) {
-      console.error("Missing payment_method or amount");
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ success: false, error: "Missing payment_method or amount" }),
-      };
+    if (!amount || isNaN(Number(amount))) {
+      return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: "Missing or invalid amount" }) };
     }
 
-    console.log("Creating payment intent for", email, "amount:", amount);
+    const unitAmount = Math.max(50, Math.round(Number(amount))); // already cents
+    const params = {
+      amount: unitAmount,
+      currency,
+      automatic_payment_methods: { enabled: true },
+    };
+    if (name) params.description = name;
+    if (email) params.receipt_email = email;
 
-    const paymentIntent = await stripe.paymentIntents.create({
-  amount: parseInt(amount) * 100,
-  currency: 'usd',
-  payment_method,
-  automatic_payment_methods: {
-    enabled: true,
-    allow_redirects: 'never'
-  },
-  description: `${name}`,
-  receipt_email: email
-});
-
-
-    console.log("PaymentIntent created:", paymentIntent.id);
+    const pi = await stripe.paymentIntents.create(params);
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ success: true, paymentIntent }),
+      headers: CORS,
+      body: JSON.stringify({ success: true, id: pi.id, clientSecret: pi.client_secret, status: pi.status }),
     };
-  } catch (error) {
-    console.error("Error:", error.message);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ success: false, error: error.message }),
-    };
+  } catch (err) {
+    return { statusCode: 500, headers: CORS, body: JSON.stringify({ success: false, error: err.message }) };
   }
 };

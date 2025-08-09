@@ -1,55 +1,68 @@
     const stripe = Stripe('pk_test_51RmJnBRf7persv2c8nPKNnNbRefcsjecMySuaIHHpyb6Wx7PuRxoMG3cfyfMNqdySHme4QlhNoB6vVks2oKvPCIc00FbbVfrud'); // Replace with your public Stripe key
-    const elements = stripe.elements();
-    const card = elements.create("card");
-    card.mount("#card-element");
+   
+const elements = stripe.elements();
+const card = elements.create("card");
+card.mount("#card-element");
 
+document.getElementById("payment-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
+  // Grab name/email from your current inputs (IDs from your HTML)
+  const name = document.getElementById("cardholder-name")?.value?.trim() || "";
+  const email = document.getElementById("cardholder-email")?.value?.trim() || "";
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const servicePrice = localStorage.getItem("selectedService") || "100";
-        const serviceName = localStorage.getItem("selectedServiceName") || "Selected Service";
-        
+  // Amount: prefer the on-page summary, else localStorage fallback
+  const summaryText = document.getElementById("summary-total")?.textContent || "";
+  const lsFallback = localStorage.getItem("selectedService") || "100";
+  const amountDollars = Number(summaryText) || Number(lsFallback) || 100;
+  const amountCents = Math.max(50, Math.round(amountDollars * 100)); // min 50¢ safety
+
+  // Create a PaymentIntent on your server
+  let piResp;
+  try {
+    piResp = await fetch("/.netlify/functions/intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        amount: amountCents,   // cents
+        currency: "usd",
+        name,
+        email
+      })
     });
+  } catch (err) {
+    document.getElementById("card-errors").textContent = "Network error creating payment.";
+    return;
+  }
 
-    document.getElementById("payment-form").addEventListener("submit", async function(e) {
-        e.preventDefault();
+  const piJson = await piResp.json().catch(() => ({}));
+  if (!piResp.ok || !piJson?.clientSecret) {
+    document.getElementById("card-errors").textContent = piJson.error || "Server error creating payment.";
+    return;
+  }
 
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const servicePrice = localStorage.getItem("selectedService") || "100";
+  // Confirm card payment on the client (handles 3DS if required)
+  const { error, paymentIntent } = await stripe.confirmCardPayment(piJson.clientSecret, {
+    payment_method: {
+      card,
+      billing_details: {
+        name: name || undefined,
+        email: email || undefined,
+      },
+    },
+  });
 
-       
+  if (error) {
+    document.getElementById("card-errors").textContent = error.message || "Payment failed.";
+    return;
+  }
 
-        const { paymentMethod, error } = await stripe.createPaymentMethod({
-            type: "card",
-            card: card,
-            billing_details: {
-                name: name,
-                email: email
-            }
-        });
-
-        if (error) {
-            document.getElementById("card-errors").textContent = error.message;
-        } else {
-            const response = await fetch("/.netlify/functions/intent", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    amount: servicePrice,
-                    payment_method: paymentMethod.id
-                })
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                alert("Booking and Payment successful!");
-                window.location.href = "/thank-you";
-            } else {
-                document.getElementById("card-errors").textContent = result.error || "Payment failed.";
-            }
-        }
-    });
+  if (paymentIntent && paymentIntent.status === "succeeded") {
+    // Success
+    alert("Booking and payment successful!");
+    window.location.href = "/thank-you";
+  } else {
+    document.getElementById("card-errors").textContent =
+      `Payment status: ${paymentIntent?.status || "unknown"}.`;
+  }
+});
