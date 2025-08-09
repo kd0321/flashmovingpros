@@ -14,7 +14,7 @@ exports.handler = async (event) => {
   try {
     const data = JSON.parse(event.body || '{}');
 
-    const { name, email, amount, payment_method } = data;
+    const { amount, payment_method } = data;
 
     if (!payment_method || !amount) {
       console.error("Missing payment_method or amount");
