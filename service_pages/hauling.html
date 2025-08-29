@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hauling Services</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../../../../CSS/universal.css">
+  <link rel="stylesheet" href="../../../../../../CSS/responsive22.css">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Hauling</h1>
+    <p>Pallets, materials, and bulk loads moved safely with proper load securement.</p>
+  </header>
+
+  <div id="form-container">
+    <!-- Contact Form -->
+    <section>
+      <h2>Contact Information</h2>
+      <label for="full-name">Full Name:</label>
+      <input type="text" id="full-name" name="full-name" placeholder="Enter your full name">
+
+      <label for="phone-number">Phone Number:</label>
+      <input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number">
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email address">
+
+      <label for="business-name">Business Name (if applicable):</label>
+      <input type="text" id="business-name" name="business-name" placeholder="Enter your business name">
+    </section>
+
+    <!-- Hauling Details -->
+    <section>
+      <h2>Hauling Details</h2>
+
+      <label for="pickup-address">Pickup Address:</label>
+      <div id="geocoder" style="margin-bottom: 15px;"></div>
+
+      <label for="dropoff-address">Drop-off Address (optional if disposal):</label>
+      <input type="text" id="dropoff-address" name="dropoff-address" placeholder="Enter drop-off address"><br><br>
+
+      <label for="load-type">Load Type:</label>
+      <select id="load-type" name="load-type">
+        <option value="">Select one</option>
+        <option>Pallets</option>
+        <option>Lumber / Materials</option>
+        <option>Machinery / Equipment</option>
+        <option>Bulk Loose Items</option>
+      </select><br><br>
+
+      <label for="weight">Estimated Weight:</label>
+      <input type="text" id="weight" name="weight" placeholder="e.g., ~1,500 lbs"><br><br>
+
+      <label for="pallet-count">Pallet Count (if applicable):</label>
+      <input type="number" id="pallet-count" name="pallet-count" min="0" placeholder="0"><br><br>
+
+      <label for="notes">Notes:</label>
+      <textarea id="notes" name="notes" placeholder="Forklift needed, dock access, straps required, restricted hours, etc."></textarea><br><br>
+
+      <label for="photo-upload">Upload photos/docs (optional):</label>
+      <input type="file" id="photo-upload" name="photo-upload" accept="image/*,.pdf" multiple>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map-container">
+      <div id="map"></div>
+      <p id="mileage-distance">Distance from HQ: 0 miles</p>
+    </section>
+
+    <section style="grid-column: span 3; text-align: center;">
+      <button id="book-services-button" style="background-color:#4CAF50;color:white;padding:15px 30px;font-size:1.2em;border:none;border-radius:8px;cursor:pointer;transition:background-color 0.3s ease;white-space:nowrap;max-width:100%;">Book Hauling</button>
+      <div class="green-box">
+        <h3>Secured &amp; delivered.</h3>
+        <p>Strapped, protected, and transported with care.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Shared scripts -->
+  <script src="/service_js/book-now-redirect.js"></script>
+  <script src="/service_js/universal-mileage.js"></script>
+  <script src="/service_js/mapbox.js"></script>
+  <script src="/service_js/errordisplayer.js"></script>
+  <script src="/service_js/cost-caculator.js"></script>
+  <script src="/service_js/TF2.js"></script>
+</body>
+</html>

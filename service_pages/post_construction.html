@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Post‑Construction Cleanup</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../../../../CSS/universal.css">
+  <link rel="stylesheet" href="../../../../../../CSS/responsive22.css">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Post‑Construction Cleanup</h1>
+    <p>Dust, debris, and leftover materials cleared after new builds or renovations.</p>
+  </header>
+
+  <div id="form-container">
+    <section>
+      <h2>Contact Information</h2>
+      <label for="full-name">Full Name:</label>
+      <input type="text" id="full-name" name="full-name" placeholder="Enter your full name">
+
+      <label for="phone-number">Phone Number:</label>
+      <input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number">
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email address">
+
+      <label for="business-name">Builder/Contractor (if applicable):</label>
+      <input type="text" id="business-name" name="business-name" placeholder="Enter name">
+    </section>
+
+    <section>
+      <h2>Cleanup Details</h2>
+
+      <label for="pickup-address">Property Address:</label>
+      <div id="geocoder" style="margin-bottom: 15px;"></div>
+
+      <label for="scope">Scope Level:</label>
+      <select id="scope" name="scope">
+        <option value="">Select one</option>
+        <option>Rough (construction stage)</option>
+        <option>Final (pre‑move‑in)</option>
+        <option>Touch‑Up</option>
+      </select><br><br>
+
+      <label for="notes">Notes:</label>
+      <textarea id="notes" name="notes" placeholder="Floor protection, access limits, power/water availability, etc."></textarea><br><br>
+
+      <label for="photo-upload">Upload plans/photos (optional):</label>
+      <input type="file" id="photo-upload" name="photo-upload" accept="image/*,.pdf" multiple>
+    </section>
+
+    <section id="map-container">
+      <div id="map"></div>
+      <p id="mileage-distance">Distance from HQ: 0 miles</p>
+    </section>
+
+    <section style="grid-column: span 3; text-align: center;">
+      <button id="book-services-button" style="background-color:#4CAF50;color:white;padding:15px 30px;font-size:1.2em;border:none;border-radius:8px;cursor:pointer;transition:background-color 0.3s ease;">Book Post‑Construction Cleanup</button>
+      <div class="green-box">
+        <h3>Ready for reveal.</h3>
+        <p>Clean, safe, and move‑in ready.</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="/service_js/book-now-redirect.js"></script>
+  <script src="/service_js/universal-mileage.js"></script>
+  <script src="/service_js/mapbox.js"></script>
+  <script src="/service_js/errordisplayer.js"></script>
+  <script src="/service_js/cost-caculator.js"></script>
+  <script src="/service_js/TF2.js"></script>
+</body>
+</html>

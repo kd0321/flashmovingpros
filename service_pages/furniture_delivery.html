@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Furniture Delivery</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../../../../CSS/universal.css">
+  <link rel="stylesheet" href="../../../../../../CSS/responsive22.css">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css">
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Furniture Delivery</h1>
+    <p>Store-to-home or home-to-home delivery with blanket wrap, secure transport, and room placement.</p>
+  </header>
+
+  <div id="form-container">
+    <!-- Contact Form -->
+    <section>
+      <h2>Contact Information</h2>
+      <label for="full-name">Full Name:</label>
+      <input type="text" id="full-name" name="full-name" placeholder="Enter your full name">
+
+      <label for="phone-number">Phone Number:</label>
+      <input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number">
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email address">
+
+      <label for="business-name">Business Name (if applicable):</label>
+      <input type="text" id="business-name" name="business-name" placeholder="Enter your business name">
+    </section>
+
+    <!-- Delivery Details -->
+    <section>
+      <h2>Delivery Details</h2>
+
+      <label for="pickup-address">Pickup Address (store or home):</label>
+      <div id="geocoder" style="margin-bottom: 15px;"></div>
+
+      <label for="dropoff-address">Drop-off Address:</label>
+      <input type="text" id="dropoff-address" name="dropoff-address" placeholder="Enter drop-off address"><br><br>
+
+      <label for="item-count">Number of Items:</label>
+      <input type="number" id="item-count" name="item-count" min="1" placeholder="1"><br><br>
+
+      <label for="largest-dims">Largest Item Dimensions (L×W×H in inches):</label>
+      <input type="text" id="largest-dims" name="largest-dims" placeholder="e.g., 84 × 36 × 30"><br><br>
+
+      <label for="placement">Room Placement:</label>
+      <select id="placement" name="placement">
+        <option value="">Select one</option>
+        <option>Threshold</option>
+        <option>Room of Choice</option>
+        <option>Room + Assembly</option>
+      </select><br><br>
+
+      <label for="elevator">Elevator/Stairs at Drop-off:</label>
+      <select id="elevator" name="elevator">
+        <option value="">Select one</option>
+        <option>Ground Level</option>
+        <option>Elevator</option>
+        <option>1 Flight</option>
+        <option>2 Flights</option>
+        <option>3+ Flights</option>
+      </select><br><br>
+
+      <label for="notes">Notes:</label>
+      <textarea id="notes" name="notes" placeholder="Loading dock, parking restrictions, narrow stairs, fragile items, etc."></textarea><br><br>
+
+      <label for="photo-upload">Upload photos (optional):</label>
+      <input type="file" id="photo-upload" name="photo-upload" accept="image/*,.pdf" multiple>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map-container">
+      <div id="map"></div>
+      <p id="mileage-distance">Distance from HQ: 0 miles</p>
+    </section>
+
+    <section style="grid-column: span 3; text-align: center;">
+      <button id="book-services-button" style="background-color:#4CAF50;color:white;padding:15px 30px;font-size:1.2em;border:none;border-radius:8px;cursor:pointer;transition:background-color 0.3s ease;white-space:nowrap;max-width:100%;">Book Furniture Delivery</button>
+      <div class="green-box">
+        <h3>Wrapped &amp; secure.</h3>
+        <p>Professional padding, careful handling, and smooth placement every time.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Shared scripts -->
+  <script src="/service_js/book-now-redirect.js"></script>
+  <script src="/service_js/universal-mileage.js"></script>
+  <script src="/service_js/mapbox.js"></script>
+  <script src="/service_js/errordisplayer.js"></script>
+  <script src="/service_js/cost-caculator.js"></script>
+  <script src="/service_js/TF2.js"></script>
+</body>
+</html>
