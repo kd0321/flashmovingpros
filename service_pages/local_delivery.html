@@ -14,7 +14,8 @@
 <body>
   <header>
     <h1>Local Delivery</h1>
-    <p>Point‑to‑point deliveries for parcels, small freight, and urgent items — same‑day options available.</p>
+    <p>Point‑to‑point deliveries for parcels, small freight, and assorted items.</p>
+    <p class="rate-banner">Starting at $150/hr (2.5-hour minimum)</p>
   </header>
 
   <div id="form-container">
@@ -47,14 +48,6 @@
       <label for="package-size">Package Size / Weight:</label>
       <input type="text" id="package-size" name="package-size" placeholder="e.g., 30 lbs, 24×18×12 in"><br><br>
 
-      <label for="service-level">Service Level:</label>
-      <select id="service-level" name="service-level">
-        <option value="">Select one</option>
-        <option>Standard (end of day)</option>
-        <option>Same‑Day</option>
-        <option>Rush (2–4 hrs)</option>
-      </select><br><br>
-
       <label for="signature">Signature Required?</label>
       <select id="signature" name="signature">
         <option value="">Select one</option>
@@ -75,14 +68,16 @@
       <p id="mileage-distance">Distance from HQ: 0 miles</p>
     </section>
 
-    <section style="grid-column: span 3; text-align: center;">
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
       <button id="book-services-button" style="background-color:#4CAF50;color:white;padding:15px 30px;font-size:1.2em;border:none;border-radius:8px;cursor:pointer;transition:background-color 0.3s ease;white-space:nowrap;max-width:100%;">Book Local Delivery</button>
       <div class="green-box">
         <h3>Fast &amp; reliable.</h3>
         <p>Direct routes, real‑time updates, and careful handling.</p>
       </div>
-    </section>
-  </div>
+    
+  <script src="../COMPONENTS/footer-magic.js"></script>
 
   <!-- Shared scripts -->
   <script src="/service_js/book-now-redirect.js"></script>
@@ -90,6 +85,7 @@
   <script src="/service_js/mapbox.js"></script>
   <script src="/service_js/errordisplayer.js"></script>
   <script src="/service_js/cost-caculator.js"></script>
-  <script src="/service_js/TF2.js"></script>
+  <script src="/service_js/bridge.js"></script>
+
 </body>
 </html>

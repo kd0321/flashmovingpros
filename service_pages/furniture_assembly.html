@@ -14,7 +14,8 @@
 <body>
   <header>
     <h1>Furniture Assembly</h1>
-    <p>Flat-pack builds, disassembly/reassembly, and expert setup with neat cleanup.</p>
+    <p>Flat-pack builds, assembly, and expert setup with neat cleanup.</p>
+    <p class="rate-banner">Flat rate per item, no hourly fees (Full-Depsoit minimum)</p>
   </header>
 
   <div id="form-container">
@@ -41,39 +42,22 @@
       <label for="service-address">Service Address:</label>
       <div id="geocoder" style="margin-bottom: 15px;"></div>
 
-      <label for="item-type">Item Type:</label>
-      <select id="item-type" name="item-type">
-        <option value="">Select one</option>
-        <option>Bed</option>
-        <option>Dresser</option>
-        <option>Desk</option>
-        <option>Table</option>
-        <option>TV Stand / Entertainment Center</option>
-        <option>Other</option>
-      </select><br><br>
+      
+      <h3>Item Quantities & Prices</h3>
 
-      <label for="item-count">Number of Items:</label>
-      <input type="number" id="item-count" name="item-count" min="1" placeholder="1"><br><br>
+      <label for="small-items">Small Items $70 each : (chairs, nightstands, side tables, lamps, stools, etcs.)</label>
+      <input type="number" id="small-items" name="small-items" min="0" value="0"><br><br>
 
-      <label for="disassembly">Disassembly Needed?</label>
-      <select id="disassembly" name="disassembly">
-        <option value="">Select one</option>
-        <option>No</option>
-        <option>Yes, disassembly first</option>
-      </select><br><br>
+      <label for="medium-items">Medium Items ($120) each: (desks,dressers, tv stands, bookshelves, etc.) </label>
+      <input type="number" id="medium-items" name="medium-items" min="0" value="0"><br><br>
 
-      <label for="bring-tools">Bring Anchors/Hardware?</label>
-      <select id="bring-tools" name="bring-tools">
-        <option value="">Select one</option>
-        <option>Standard tools only</option>
-        <option>Wall anchors requested</option>
-        <option>Mounting hardware requested</option>
-      </select><br><br>
+      <label for="large-items">Large Items ($200) each : (beds, wardrobes. sectionals, bunk beds, closets, etc.)</label>
+      <input type="number" id="large-items" name="large-items" min="0" value="0"><br><br>
 
       <label for="notes">Notes:</label>
       <textarea id="notes" name="notes" placeholder="Room location, stairs/elevator, parking, fragile surfaces, etc."></textarea><br><br>
 
-      <label for="photo-upload">Upload assembly guide/photos (optional):</label>
+      <label for="photo-upload">Upload photos (optional):</label>
       <input type="file" id="photo-upload" name="photo-upload" accept="image/*,.pdf" multiple>
     </section>
 
@@ -83,14 +67,16 @@
       <p id="mileage-distance">Distance from HQ: 0 miles</p>
     </section>
 
-    <section style="grid-column: span 3; text-align: center;">
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
       <button id="book-services-button" style="background-color:#4CAF50;color:white;padding:15px 30px;font-size:1.2em;border:none;border-radius:8px;cursor:pointer;transition:background-color 0.3s ease;white-space:nowrap;max-width:100%;">Book Furniture Assembly</button>
       <div class="green-box">
         <h3>Built right.</h3>
         <p>Arrives on time, assembled neatly, and cleaned up after.</p>
       </div>
-    </section>
-  </div>
+   
+  <script src="../COMPONENTS/footer-magic.js"></script>
 
   <!-- Shared scripts -->
   <script src="/service_js/book-now-redirect.js"></script>
@@ -98,6 +84,7 @@
   <script src="/service_js/mapbox.js"></script>
   <script src="/service_js/errordisplayer.js"></script>
   <script src="/service_js/cost-caculator.js"></script>
-  <script src="/service_js/TF2.js"></script>
+  <script src="/service_js/bridge.js"></script>
+
 </body>
 </html>

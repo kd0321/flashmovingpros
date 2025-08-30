@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../../../../../CSS/checkout.css">
-  <script src="https://js.stripe.com/v3/"></script>
+
   <!-- Calendly embed assets -->
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
@@ -57,9 +57,7 @@
       <td>$<span id="summary-total"></span></td>
     </tr>
      <td></td>
-  <td style="font-size: 0.9em; color: #666;">
-    (2.5 hr minimum deposit)
-  </td>
+  
   </table>
 </div>
 
@@ -76,17 +74,6 @@
 
 
 
-    <div id="service-summary"></div>
-
-    <label for="cardholder-name">Cardholder Name</label>
-    <input type="text" id="cardholder-name" required>
-
-    <label for="cardholder-name">Cardholder Email</label>
-    <input type="text" id="cardholder-email" required>
-
-    <label for="card-element">Card Details</label>
-    <div id="card-element"></div>
-    <div id="card-errors" role="alert"></div>
 
 <div style="margin: 15px 0;">
   <label for="disclaimer" style="cursor:pointer;">
@@ -103,11 +90,28 @@
     <button type="submit">Confirm & Pay</button>
 </form>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  let refPath = '';
+  try { refPath = new URL(document.referrer).pathname; } catch {}
+  const src = sessionStorage.getItem('__source') || '';
+
+  // If the source stamp doesn't match the referrer, ignore stale data.
+  if (src && refPath && src !== refPath) {
+    console.warn('Ignoring stale sessionStorage from', src, 'referrer is', refPath);
+    ['name','email','phone','business','address','drop off address','dropoff-address','service','description','photosList','__source']
+      .forEach(k => sessionStorage.removeItem(k));
+  }
+});
+</script>
+
+
 <input type="hidden" id="calendly-confirmed" value="false">
 
+<script src="../COMPONENTS/footer-magic.js"></script>  
 
-<script src="/service_js/pay-system.js"></script>
 <script src="/service_js/display-system.js"></script>
-<script src="/service_js/checkout.js"></script>
+
+<script src="/service_js/end-redirect.js"></script>
 
 </html>

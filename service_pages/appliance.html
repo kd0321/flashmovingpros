@@ -17,6 +17,7 @@
   <header>
     <h1>Appliance Moving</h1>
     <p>Safe, careful transport for refrigerators, washers, dryers, ranges, and more — door to door.</p>
+    <p class="rate-banner">Starting at $150/hr (2.5-hour minimum)</p>
   </header>
 
   <div id="form-container">
@@ -31,6 +32,9 @@
 
       <label for="email">Email Address:</label>
       <input type="email" id="email" name="email" placeholder="Enter your email address">
+
+      <label for="business-name">Business Name (if applicable):</label>
+      <input type="text" id="business-name" name="business-name" placeholder="Enter your business name">
     </section>
 
     <!-- Job Details Form -->
@@ -45,17 +49,6 @@
       <label for="dropoff-address">Drop-off Address:</label>
       <input type="text" id="dropoff-address" name="dropoff-address" placeholder="Enter drop-off address"><br><br>
 
-      <!-- Crew Size (no pricing calc) -->
-      <label for="crew-size">Choose Your Crew:</label>
-      <select id="crew-size" name="crew-size">
-        <option value="">Select crew size</option>
-        <option value="1-2">1–2 movers — $150/hr</option>
-        <option value="3">3 movers — $225/hr</option>
-      </select><br><br>
-
-      <label for="job-date">Preferred Move Date:</label>
-      <input type="date" id="job-date" name="job-date"><br><br>
-
       <label for="appliance-type">Appliance Type:</label>
       <select id="appliance-type" name="appliance-type">
         <option value="">Select one</option>
@@ -69,9 +62,6 @@
 
       <label for="appliance-count">How many appliances?</label>
       <input type="number" id="appliance-count" name="appliance-count" min="1" placeholder="e.g., 2"><br><br>
-
-      <label for="dimensions">Approximate Dimensions / Weight (if known):</label>
-      <input type="text" id="dimensions" name="dimensions" placeholder="e.g., 36in W × 70in H, ~300 lb"><br><br>
 
       <label for="elevator">Elevator Access:</label>
       <select id="elevator" name="elevator">
@@ -99,7 +89,9 @@
       <p style="font-size: 0.85em; color: #777;"></p>
     </section>
 
-    <section style="grid-column: span 3; text-align: center;">
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
       <button id="book-services-button" style="
         background-color: #4CAF50;
         color: white;
@@ -120,8 +112,8 @@
         <h3>Heavy, handled.</h3>
         <p>Thanks for choosing FlashMoving Pros. We move bulky appliances safely and efficiently from start to finish.</p>
       </div>
-    </section>
-  </div>
+    
+  <script src="../COMPONENTS/footer-magic.js"></script>    
 
   <!-- Shared scripts -->
   <script src="/service_js/book-now-redirect.js"></script>
@@ -129,7 +121,9 @@
   <script src="/service_js/mapbox.js"></script>
   <script src="/service_js/errordisplayer.js"></script>
   <script src="/service_js/cost-caculator.js"></script>
-  <script src="/service_js/TF2.js"></script>
+  <script src="/service_js/bridge.js"></script>
+
+ 
 
 </body>
 

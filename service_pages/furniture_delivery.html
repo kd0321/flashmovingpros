@@ -15,6 +15,7 @@
   <header>
     <h1>Furniture Delivery</h1>
     <p>Store-to-home or home-to-home delivery with blanket wrap, secure transport, and room placement.</p>
+    <p class="rate-banner">Starting at $150/hr (2.5-hour minimum)</p>
   </header>
 
   <div id="form-container">
@@ -47,17 +48,6 @@
       <label for="item-count">Number of Items:</label>
       <input type="number" id="item-count" name="item-count" min="1" placeholder="1"><br><br>
 
-      <label for="largest-dims">Largest Item Dimensions (L×W×H in inches):</label>
-      <input type="text" id="largest-dims" name="largest-dims" placeholder="e.g., 84 × 36 × 30"><br><br>
-
-      <label for="placement">Room Placement:</label>
-      <select id="placement" name="placement">
-        <option value="">Select one</option>
-        <option>Threshold</option>
-        <option>Room of Choice</option>
-        <option>Room + Assembly</option>
-      </select><br><br>
-
       <label for="elevator">Elevator/Stairs at Drop-off:</label>
       <select id="elevator" name="elevator">
         <option value="">Select one</option>
@@ -81,14 +71,16 @@
       <p id="mileage-distance">Distance from HQ: 0 miles</p>
     </section>
 
-    <section style="grid-column: span 3; text-align: center;">
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
       <button id="book-services-button" style="background-color:#4CAF50;color:white;padding:15px 30px;font-size:1.2em;border:none;border-radius:8px;cursor:pointer;transition:background-color 0.3s ease;white-space:nowrap;max-width:100%;">Book Furniture Delivery</button>
       <div class="green-box">
         <h3>Wrapped &amp; secure.</h3>
         <p>Professional padding, careful handling, and smooth placement every time.</p>
       </div>
-    </section>
-  </div>
+   
+   <script src="../COMPONENTS/footer-magic.js"></script>   
 
   <!-- Shared scripts -->
   <script src="/service_js/book-now-redirect.js"></script>
@@ -96,6 +88,7 @@
   <script src="/service_js/mapbox.js"></script>
   <script src="/service_js/errordisplayer.js"></script>
   <script src="/service_js/cost-caculator.js"></script>
-  <script src="/service_js/TF2.js"></script>
+  <script src="/service_js/bridge.js"></script>
+
 </body>
 </html>

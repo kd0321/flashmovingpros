@@ -15,6 +15,7 @@
   <header>
     <h1>Junk Removal</h1>
     <p>From single-item pickups to full cleanouts — fast hauling, donation, and responsible disposal.</p>
+    <p class="rate-banner">Priced by the truck load not by the hour (50% deposit fee)</p>
   </header>
 
   <div id="form-container">
@@ -52,15 +53,17 @@
         <option>Mixed Items</option>
       </select><br><br>
 
-      <label for="volume">Approximate Volume:</label>
-      <select id="volume" name="volume">
-        <option value="">Select one</option>
-        <option>Few Items</option>
-        <option>1/4 Truck</option>
-        <option>1/2 Truck</option>
-        <option>3/4 Truck</option>
-        <option>Full Truck</option>
-      </select><br><br>
+     <label for="volume">Approximate Truckload:</label>
+     <select id="volume" name="volume">
+     <option value="">Select one</option>
+     <option value="few">Few Items — $150–$200</option>
+     <option value="quarter">1/4 Truck — $250–$300</option>
+     <option value="half">1/2 Truck — $400–$500</option>
+     <option value="three-quarter">3/4 Truck — $550–$650</option>
+     <option value="full">Full Truck — $700–$850+</option>
+     </select>
+     <br><br>
+
 
       <label for="stairs">Stairs or Elevator?</label>
       <select id="stairs" name="stairs">
@@ -70,14 +73,6 @@
         <option>1 Flight</option>
         <option>2 Flights</option>
         <option>3+ Flights</option>
-      </select><br><br>
-
-      <label for="disposal">Preferred Handling:</label>
-      <select id="disposal" name="disposal">
-        <option value="">Select one</option>
-        <option>Donate if possible</option>
-        <option>Recycle when possible</option>
-        <option>Standard Disposal</option>
       </select><br><br>
 
       <label for="notes">Anything else we should know?</label>
@@ -93,14 +88,16 @@
       <p id="mileage-distance">Distance from HQ: 0 miles</p>
     </section>
 
-    <section style="grid-column: span 3; text-align: center;">
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
       <button id="book-services-button" style="background-color:#4CAF50;color:white;padding:15px 30px;font-size:1.2em;border:none;border-radius:8px;cursor:pointer;transition:background-color 0.3s ease;white-space:nowrap;max-width:100%;">Ready to Book Junk Removal</button>
       <div class="green-box">
         <h3>Clutter gone, space back.</h3>
         <p>We donate and recycle whenever possible to reduce landfill waste.</p>
       </div>
-    </section>
-  </div>
+    
+  <script src="../COMPONENTS/footer-magic.js"></script>
 
   <!-- Shared scripts -->
   <script src="/service_js/book-now-redirect.js"></script>
@@ -108,6 +105,7 @@
   <script src="/service_js/mapbox.js"></script>
   <script src="/service_js/errordisplayer.js"></script>
   <script src="/service_js/cost-caculator.js"></script>
-  <script src="/service_js/TF2.js"></script>
+  <script src="/service_js/bridge.js"></script>
+
 </body>
 </html>

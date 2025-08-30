@@ -15,6 +15,7 @@
   <header>
     <h1>Renovation Debris Removal</h1>
     <p>Drywall, wood, tile, and remodeling debris hauled away safely.</p>
+    <p class="rate-banner">Priced by truckload. Heavy debris surcharge applies for drywall, tile, roofing, or wood (+$100–$200).</p>
   </header>
 
   <div id="form-container">
@@ -48,15 +49,18 @@
         <option>Mixed Construction Debris</option>
       </select><br><br>
 
-      <label for="volume">Approximate Volume:</label>
-      <select id="volume" name="volume">
-        <option value="">Select one</option>
-        <option>Few Bags</option>
-        <option>1/4 Truck</option>
-        <option>1/2 Truck</option>
-        <option>3/4 Truck</option>
-        <option>Full Truck</option>
-      </select><br><br>
+      <label for="volume">Approximate Truckload:</label>
+     <select id="volume" name="volume">
+     <option value="">Select one</option>
+     <option value="few">Few Items — $150–$200</option>
+     <option value="quarter">1/4 Truck — $250–$300</option>
+     <option value="half">1/2 Truck — $400–$500</option>
+     <option value="three-quarter">3/4 Truck — $550–$650</option>
+     <option value="full">Full Truck — $700–$850+</option>
+     </select>
+     <br><br>
+
+
 
       <label for="notes">Notes:</label>
       <textarea id="notes" name="notes" placeholder="Curbside or inside, stairs, heavy items, disposal restrictions, etc."></textarea><br><br>
@@ -70,20 +74,23 @@
       <p id="mileage-distance">Distance from HQ: 0 miles</p>
     </section>
 
-    <section style="grid-column: span 3; text-align: center;">
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
       <button id="book-services-button" style="background-color:#4CAF50;color:white;padding:15px 30px;font-size:1.2em;border:none;border-radius:8px;cursor:pointer;transition:background-color 0.3s ease;">Book Renovation Debris Removal</button>
       <div class="green-box">
         <h3>Site cleared.</h3>
         <p>We load and haul so you can keep building.</p>
       </div>
-    </section>
-  </div>
+    
+  <script src="../COMPONENTS/footer-magic.js"></script>    
 
   <script src="/service_js/book-now-redirect.js"></script>
   <script src="/service_js/universal-mileage.js"></script>
   <script src="/service_js/mapbox.js"></script>
   <script src="/service_js/errordisplayer.js"></script>
   <script src="/service_js/cost-caculator.js"></script>
-  <script src="/service_js/TF2.js"></script>
+  <script src="/service_js/bridge.js"></script>
+
 </body>
 </html>

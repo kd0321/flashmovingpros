@@ -17,6 +17,7 @@
   <header>
     <h1>Packing & Unpacking</h1>
     <p>Professional packing and unpacking services for homes, offices, and specialty items — handled with care from start to finish.</p>
+    <p class="rate-banner">Starting at $150/hr (2.5-hour minimum)</p>
   </header>
 
   <div id="form-container">
@@ -31,7 +32,12 @@
 
       <label for="email">Email Address:</label>
       <input type="email" id="email" name="email" placeholder="Enter your email address">
+
+     <label for="business-name">Business Name (if applicable):</label>
+      <input type="text" id="business-name" name="business-name" placeholder="Enter your business name">
     </section>
+
+    
 
     <!-- Job Details Form -->
     <section>
@@ -40,17 +46,6 @@
       <!-- PICK-UP: Mapbox Geocoder -->
       <label for="pickup-address">Service Address:</label>
       <div id="geocoder" style="margin-bottom: 15px;"></div>
-
-      <!-- Crew Size -->
-      <label for="crew-size">Choose Your Crew:</label>
-      <select id="crew-size" name="crew-size">
-        <option value="">Select crew size</option>
-        <option value="1-2">1–2 packers — $150/hr</option>
-        <option value="3">3 packers — $225/hr</option>
-      </select><br><br>
-
-      <label for="job-date">Preferred Service Date:</label>
-      <input type="date" id="job-date" name="job-date"><br><br>
 
       <label for="service-type">Type of Service:</label>
       <select id="service-type" name="service-type">
@@ -77,7 +72,9 @@
       <p style="font-size: 0.85em; color: #777;"></p>
     </section>
 
-    <section style="grid-column: span 3; text-align: center;">
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
       <button id="book-services-button" style="
         background-color: #4CAF50;
         color: white;
@@ -98,8 +95,8 @@
         <h3>We pack it right.</h3>
         <p>Thanks for choosing FlashMoving Pros. Our packing experts protect your belongings for safe transport and quick setup at your new location.</p>
       </div>
-    </section>
-  </div>
+   
+   <script src="../COMPONENTS/footer-magic.js"></script>   
 
   <!-- Shared scripts -->
   <script src="/service_js/book-now-redirect.js"></script>
@@ -107,7 +104,9 @@
   <script src="/service_js/mapbox.js"></script>
   <script src="/service_js/errordisplayer.js"></script>
   <script src="/service_js/cost-caculator.js"></script>
-  <script src="/service_js/TF2.js"></script>
+  <script src="/service_js/bridge.js"></script>
+
+  
 
 </body>
 

@@ -15,6 +15,7 @@
   <header>
     <h1>Event &amp; Equipment Delivery</h1>
     <p>Timed pickups/drop-offs, staging, and coordinated logistics for events, trade shows, and rentals.</p>
+    <p class="rate-banner">Starting at $150/hr (2.5-hour minimum)</p>
   </header>
 
   <div id="form-container">
@@ -41,35 +42,8 @@
       <label for="pickup-address">Pickup Address:</label>
       <div id="geocoder" style="margin-bottom: 15px;"></div>
 
-      <label for="dropoff-address">Venue Address:</label>
-      <input type="text" id="dropoff-address" name="dropoff-address" placeholder="Enter venue address"><br><br>
-
-      <label for="event-date">Event Date:</label>
-      <input type="date" id="event-date" name="event-date"><br><br>
-
-      <label for="pickup-window">Pickup Window:</label>
-      <input type="time" id="pickup-start"> to <input type="time" id="pickup-end"><br><br>
-
-      <label for="dropoff-window">Drop-off Window:</label>
-      <input type="time" id="dropoff-start"> to <input type="time" id="dropoff-end"><br><br>
-
-      <label for="staging">Staging/Setup Needed?</label>
-      <select id="staging" name="staging">
-        <option value="">Select one</option>
-        <option>No staging</option>
-        <option>Basic placement</option>
-        <option>Full setup (extra time)</option>
-      </select><br><br>
-
-      <label for="onsite-wait">On-site Wait Time (estimated):</label>
-      <select id="onsite-wait" name="onsite-wait">
-        <option value="">Select one</option>
-        <option>None</option>
-        <option>Up to 30 min</option>
-        <option>30–60 min</option>
-        <option>1–2 hrs</option>
-        <option>2+ hrs</option>
-      </select><br><br>
+      <label for="dropoff-address">Drop-off Address:</label>
+      <input type="text" id="dropoff-address" name="dropoff-address" placeholder="Enter drop-off address"><br><br>
 
       <label for="notes">Notes:</label>
       <textarea id="notes" name="notes" placeholder="Loading docks, union rules, COIs, elevator reservations, restricted hours, etc."></textarea><br><br>
@@ -84,14 +58,16 @@
       <p id="mileage-distance">Distance from HQ: 0 miles</p>
     </section>
 
-    <section style="grid-column: span 3; text-align: center;">
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
       <button id="book-services-button" style="background-color:#4CAF50;color:white;padding:15px 30px;font-size:1.2em;border:none;border-radius:8px;cursor:pointer;transition:background-color 0.3s ease;white-space:nowrap;max-width:100%;">Book Event &amp; Equipment Delivery</button>
       <div class="green-box">
         <h3>On time, every time.</h3>
         <p>Venue rules, tight windows, and staging handled by a pro crew.</p>
       </div>
-    </section>
-  </div>
+   
+  <script src="../COMPONENTS/footer-magic.js"></script>    
 
   <!-- Shared scripts -->
   <script src="/service_js/book-now-redirect.js"></script>
@@ -99,6 +75,7 @@
   <script src="/service_js/mapbox.js"></script>
   <script src="/service_js/errordisplayer.js"></script>
   <script src="/service_js/cost-caculator.js"></script>
-  <script src="/service_js/TF2.js"></script>
+  <script src="/service_js/bridge.js"></script>
+
 </body>
 </html>

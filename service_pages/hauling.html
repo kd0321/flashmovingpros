@@ -15,6 +15,7 @@
   <header>
     <h1>Hauling</h1>
     <p>Pallets, materials, and bulk loads moved safely with proper load securement.</p>
+    <p class="rate-banner">Starting at $150/hr (2.5-hour minimum)</p>
   </header>
 
   <div id="form-container">
@@ -41,7 +42,7 @@
       <label for="pickup-address">Pickup Address:</label>
       <div id="geocoder" style="margin-bottom: 15px;"></div>
 
-      <label for="dropoff-address">Drop-off Address (optional if disposal):</label>
+      <label for="dropoff-address">Drop-off Address (optional):</label>
       <input type="text" id="dropoff-address" name="dropoff-address" placeholder="Enter drop-off address"><br><br>
 
       <label for="load-type">Load Type:</label>
@@ -72,14 +73,16 @@
       <p id="mileage-distance">Distance from HQ: 0 miles</p>
     </section>
 
-    <section style="grid-column: span 3; text-align: center;">
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
       <button id="book-services-button" style="background-color:#4CAF50;color:white;padding:15px 30px;font-size:1.2em;border:none;border-radius:8px;cursor:pointer;transition:background-color 0.3s ease;white-space:nowrap;max-width:100%;">Book Hauling</button>
       <div class="green-box">
         <h3>Secured &amp; delivered.</h3>
         <p>Strapped, protected, and transported with care.</p>
       </div>
-    </section>
-  </div>
+   
+  <script src="../COMPONENTS/footer-magic.js"></script>
 
   <!-- Shared scripts -->
   <script src="/service_js/book-now-redirect.js"></script>
@@ -87,6 +90,7 @@
   <script src="/service_js/mapbox.js"></script>
   <script src="/service_js/errordisplayer.js"></script>
   <script src="/service_js/cost-caculator.js"></script>
-  <script src="/service_js/TF2.js"></script>
+  <script src="/service_js/bridge.js"></script>
+  
 </body>
 </html>

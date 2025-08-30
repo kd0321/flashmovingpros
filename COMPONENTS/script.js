@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'furniture-assembly' : 'service_pages/furniture_assembly.html',
     'local-delivery' : 'service_pages/local_delivery.html',
     'hauling' : 'service_pages/hauling.html',
-    'storage' : 'service_pages/storage.html',
     'attic-cleanout' : 'service_pages/attic_cleanout.html',
     'basement-cleanout' : 'service_pages/basement_cleanout.html',
     'garage-cleanout' : 'service_pages/garage_cleanout.html',

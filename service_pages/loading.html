@@ -17,6 +17,7 @@
   <header>
     <h1>Loading & Unloading</h1>
     <p>Labor-only help for trucks, PODs, containers, and storage units. Customer provides the vehicle; we do the heavy lifting.</p>
+    <p class="rate-banner">Starting at $150/hr (2.5-hour minimum)</p>
   </header>
 
   <div id="form-container">
@@ -31,6 +32,9 @@
 
       <label for="email">Email Address:</label>
       <input type="email" id="email" name="email" placeholder="Enter your email address">
+   
+      <label for="business-name">Business Name (if applicable):</label>
+      <input type="text" id="business-name" name="business-name" placeholder="Enter your business name">
     </section>
 
     <!-- Job Details Form -->
@@ -44,17 +48,6 @@
       <!-- DROP-OFF: simple text input (no geocoder) -->
       <label for="dropoff-address">Drop-off Address (if applicable):</label>
       <input type="text" id="dropoff-address" name="dropoff-address" placeholder="Enter drop-off address"><br><br>
-
-      <!-- Crew Size (no pricing calc) -->
-      <label for="crew-size">Choose Your Crew:</label>
-      <select id="crew-size" name="crew-size">
-        <option value="">Select crew size</option>
-        <option value="1-2">1–2 movers — $150/hr</option>
-        <option value="3">3 movers — $225/hr</option>
-      </select><br><br>
-
-      <label for="job-date">Preferred Job Date:</label>
-      <input type="date" id="job-date" name="job-date"><br><br>
 
       <label for="vehicle-type">What are we loading/unloading?</label>
       <select id="vehicle-type" name="vehicle-type">
@@ -105,7 +98,9 @@
       <p style="font-size: 0.85em; color: #777;"></p>
     </section>
 
-    <section style="grid-column: span 3; text-align: center;">
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
       <button id="book-services-button" style="
         background-color: #4CAF50;
         color: white;
@@ -126,8 +121,8 @@
         <h3>We’re ready when you are.</h3>
         <p>Thanks for choosing FlashMoving Pros. We load tight and unload safely—so your belongings arrive in the same condition.</p>
       </div>
-    </section>
-  </div>
+   
+   <script src="../COMPONENTS/footer-magic.js"></script>   
 
   <!-- Shared scripts -->
   <script src="/service_js/book-now-redirect.js"></script>
@@ -135,7 +130,9 @@
   <script src="/service_js/mapbox.js"></script>
   <script src="/service_js/errordisplayer.js"></script>
   <script src="/service_js/cost-caculator.js"></script>
-  <script src="/service_js/TF2.js"></script>
+  <script src="/service_js/bridge.js"></script>
+
+  
 
 </body>
 
