@@ -1,4 +1,4 @@
-// service_js/display-system.js — cleaned display for checkout page
+// service_js/display-system.js — checkout summary (with TOTAL)
 document.addEventListener('DOMContentLoaded', () => {
   // Optional: guard against stale data from a different page
   let refPath = '';
@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (src && refPath && src !== refPath) {
     console.warn('[ss] ignoring stale data from', src, 'referrer is', refPath);
-    // If you want to hard-clear: 
-    // ['name','email','phone','business','address','drop off address','dropoff-address','service','description','photosList','__source'].forEach(k => sessionStorage.removeItem(k));
+    // If you want to hard-clear, uncomment:
+    // ['name','email','phone','business','address','drop off address','dropoff-address','service','description','photosList','__source']
+    //   .forEach(k => sessionStorage.removeItem(k));
   }
 
   const get = (k) => sessionStorage.getItem(k) || '';
@@ -27,4 +28,28 @@ document.addEventListener('DOMContentLoaded', () => {
   set('summary-dropoff',     drop,               'N/A');
   set('summary-service',     get('service') || (document.querySelector('h1')?.textContent || document.title), 'N/A');
   set('summary-description', get('description'), 'None');
+
+  // ===== TOTAL =====
+  (function () {
+    const span = document.getElementById('summary-total');
+    if (!span) return;
+
+    // read total saved by your calculator (assembly or otherwise)
+    let val = get('total') || get('finalTotal') || '';
+    if (!val) { span.textContent = ''; return; }
+
+    const isNumeric = /^-?\d+(?:\.\d+)?$/.test(val);
+
+    if (isNumeric) {
+      // keep the hard-coded "$" in HTML, just set the number
+      span.textContent = Number(val).toFixed(2);
+    } else {
+      // if it's a text/range like "1/4 Truck — $250–$300", remove prefixed "$"
+      const prev = span.previousSibling;
+      if (prev && prev.nodeType === Node.TEXT_NODE && prev.textContent.trim() === '$') {
+        prev.textContent = '';
+      }
+      span.textContent = val;
+    }
+  })();
 });

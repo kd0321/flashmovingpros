@@ -1,114 +1,128 @@
-// cost-caculator.js — NO CREW SIZE + 2.5 hr minimum for hourly only
+// cost-caculator.js — Fixed totals per service with "$" and "2.5 hr minimum"
 (function () {
-  // Page filename -> pricing bucket
-  var pageToBucket = {
-    // Hourly: Residential ($150/hr)
-    'residential': 'residential',
-    'residential-moving': 'residential',
-    'appliance-moving': 'residential',
-    'furniture-delivery': 'residential',
-    'local-delivery': 'residential',
-    'loading-unloading': 'residential',
-    'packing-unpacking': 'residential',
-    'yard-cleaning': 'residential', // if you use hourly for yard cleaning
+  // ---- HARD GUARD: bail out on junk/cleanout/onsite pages or if truckload selector exists
+  const pageKey = location.pathname.toLowerCase().split('/').pop().replace(/\.html?$/,'') || 'index';
+  const titleLC = (document.querySelector('header h1, h1')?.textContent || document.title || '').toLowerCase();
+  const hasTruckloadSelect = !!document.getElementById('volume');
 
-    
+  const isCleanoutLike =
+    hasTruckloadSelect ||
+    /junk|cleanout|post[-\s]*construction|renovation|foreclosure|eviction|storage|garage|attic|basement|shed.*deck|deck.*shed/.test(titleLC) ||
+    /junk-removal|attic-cleanout|basement-cleanout|garage-cleanout|storage-unit-cleanout|office-cleanout|shed-deck-cleanout|renovation-debris|post-construction|foreclosure-cleanout|eviction-cleanout|hoarder-cleanout|full-estate-cleanout/.test(pageKey);
 
-    // Hourly: Commercial ($175/hr)
-    'commercial': 'commercial',
-    'commercial-moving': 'commercial',
+  if (isCleanoutLike || window.SKIP_FIXED_TOTALS === true) {
+    return; // DO NOT write totals here
+  }
+  // ---- END GUARD
 
-    // Hourly: Specialty ($200/hr)
-    'specialty': 'specialty',
-    'specialty-items': 'specialty',
-    'event-equipment-delivery': 'specialty',
-    'furniture-assembly': 'specialty',
+  // ---------- helpers ----------
+  function getFileKey() {
+    const path = location.pathname.toLowerCase();
+    return path.substring(path.lastIndexOf('/') + 1).replace(/\.html?$/, '') || 'index';
+  }
+  function normTitle(s) {
+    return (s || '').toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, ' ').trim();
+  }
+  function detectServiceName() {
+    const h1 = document.querySelector('header h1, header .title, h1');
+    return (h1?.textContent || document.title || '').trim();
+  }
 
-    // Junk removal = by truckload (no hour min)
-    'junk-removal': 'junk',
-    'hauling': 'junk',
+  // ---------- filename aliases ----------
+  const fileToKey = {
+    'residential'               : 'residential-moving',
+    'residential-moving'        : 'residential-moving',
+    'appliance-moving'          : 'appliance-moving',
+    'furniture-delivery'        : 'furniture-delivery',
+    'local-delivery'            : 'local-delivery',
 
-    // Cleanouts/debris/post-construction = truckload (no hour min)
-    'attic-cleanout': 'truckload',
-    'basement-cleanout': 'truckload',
-    'garage-cleanout': 'truckload',
-    'storage-unit-cleanout': 'truckload',
-    'office-cleanout': 'truckload',
-    'shed-cleanout': 'truckload',
-    'deck-cleanout': 'truckload',
-    'shed-deck-cleanout': 'truckload',
-    'renovation-debris': 'truckload',
-    'post-construction': 'truckload',
-    'foreclosure-cleanout': 'truckload',
-    'eviction-cleanout': 'truckload',
+    'loading-unloading'         : 'loading-unloading',
+    'loading-and-unloading'     : 'loading-unloading',
+    'loading_and_unloading'     : 'loading-unloading',
+    'loadingunloading'          : 'loading-unloading',
+    'loading'                   : 'loading-unloading', // if the file is just loading.html
 
-    // On-site estimate (starts at $1500+) — no hour min
-    'hoarder-cleanout': 'onsite',
-    'estate-cleanout': 'onsite',
-    'full-estate-cleanout': 'onsite'
+    'packing-unpacking'         : 'packing-and-unpacking',
+
+    'commercial'                : 'commercial-moving',
+    'commercial-moving'         : 'commercial-moving',
+
+    'specialty'                 : 'specialty-item-moving',
+    'specialty-items'           : 'specialty-item-moving',
+
+    // Hauling is fixed-price here (NOT a truckload page)
+    'hauling'                   : 'hauling'
   };
 
-  // Pricing buckets + min hours where applicable
-  var pricing = {
-    residential: { type: 'hourly',  rate: 150, label: '$150/hr', minHours: 2.5 },
-    commercial:  { type: 'hourly',  rate: 175, label: '$175/hr', minHours: 2.5 },
-    specialty:   { type: 'hourly',  rate: 200, label: '$200/hr', minHours: 2.5 },
-
-    // No hourly minimums for these:
-    junk:        { type: 'truckload', label: 'Priced by truckload' },
-    truckload:   { type: 'truckload', label: 'Priced by truckload (+$50/hr labor/surcharges if needed)' },
-    onsite:      { type: 'onsite',   min: 1500, label: 'On-site estimate required (starts at $1500+)' }
+  // ---------- totals ----------
+  const keyToTotal = {
+    'residential-moving'           : 375,
+    'commercial-moving'            : 438,
+    'loading-unloading'            : 375,
+    'packing-and-unpacking'        : 375,
+    'appliance-moving'             : 375,
+    'specialty-item-moving'        : 500,
+    'furniture-delivery'           : 375,
+    'event-and-equipment-delivery' : 438,
+    'local-delivery'               : 375,
+    'hauling'                      : 375
   };
 
-  function detectPageKey() {
-    var path = location.pathname.toLowerCase();
-    var file = path.substring(path.lastIndexOf('/') + 1).replace(/\.html?$/, '');
-    return file || 'index';
+  // ---------- robust detection ----------
+  function detectServiceKey() {
+    // A) filename wins first
+    const fk = fileToKey[getFileKey()];
+    if (fk) return fk;
+
+    // B) then heading/title with explicit overrides first
+    const t = normTitle(detectServiceName());
+
+    // Hard overrides BEFORE any "commercial" match
+    if (/\bloading\b/.test(t) && /\bunloading\b/.test(t)) return 'loading-unloading';
+    if (/\bhaul(?:ing)?\b/.test(t))                       return 'hauling';
+
+    // Specific mappings
+    if (/\bpacking\b/.test(t) && /\bunpacking\b/.test(t))                 return 'packing-and-unpacking';
+    if (/\bfurniture\b/.test(t) && /\bdelivery\b/.test(t))                return 'furniture-delivery';
+    if (/\bevent\b/.test(t) && /\bequipment\b/.test(t) && /\bdelivery\b/.test(t))
+                                                                          return 'event-and-equipment-delivery';
+    if (/\bresidential\b/.test(t) && /\bmoving\b/.test(t))                return 'residential-moving';
+    if (/\bappliance\b/.test(t)   && /\bmoving\b/.test(t))                return 'appliance-moving';
+    if (/\blocal\b/.test(t)       && /\bdelivery\b/.test(t))              return 'local-delivery';
+
+    // LAST: commercial (so it can’t steal loading/unloading or hauling)
+    if (/\bcommercial\b/.test(t)  && /\bmoving\b/.test(t))                return 'commercial-moving';
+
+    return null;
   }
 
-  function detectBucket() {
-    var key = detectPageKey();
-    return pageToBucket[key] || 'residential';
+  function setFixedTotalForService() {
+    const svcKey = detectServiceKey();
+    if (!svcKey) return;
+    const total = keyToTotal[svcKey];
+    if (typeof total !== 'number') return;
+
+    const val = `$${total} (2.5 hr minimum)`;
+    sessionStorage.setItem('total', val);
+    sessionStorage.setItem('finalTotal', val);
+
+    const preview = document.getElementById('total-price');
+    if (preview) preview.textContent = val;
   }
 
-  function getCheckoutUrl() {
-    return location.pathname.indexOf('/service_pages/') > -1 ? '../checkout.html' : './checkout.html';
-  }
+  function wire() {
+    setFixedTotalForService();
 
-  function getSelectedTruckload() {
-    var sel = document.getElementById('volume');
-    if (!sel) return null;
-    var val = sel.value || '';
-    var text = (sel.options && sel.selectedIndex >= 0) ? sel.options[sel.selectedIndex].text : '';
-    return { value: val, text: text };
-  }
+    const btn = document.getElementById('book-services-button');
+    if (btn) btn.addEventListener('click', setFixedTotalForService);
 
-  function init() {
-    var btn = document.getElementById('book-services-button');
-    if (!btn) return;
-
-    btn.addEventListener('click', function () {
-      var bucket = detectBucket();
-      var rule = pricing[bucket] || pricing.residential;
-
-      var load = getSelectedTruckload(); // only exists on truckload/junk pages
-
-      try {
-        localStorage.setItem('serviceBucket', bucket);
-        localStorage.setItem('pricingRule', JSON.stringify(rule));
-        if (load) localStorage.setItem('truckload', JSON.stringify(load));
-        else localStorage.removeItem('truckload');
-      } catch (_) {}
-
-      var params = new URLSearchParams();
-      params.set('service', bucket);
-      if (load && load.value) params.set('volume', load.value);
-
-      location.href = getCheckoutUrl() + '?' + params.toString();
-    });
+    document.addEventListener('submit', function (e) {
+      const action = (e.target.getAttribute('action') || '').toLowerCase();
+      if (action.includes('checkout.html')) setFixedTotalForService();
+    }, true);
   }
 
   document.readyState === 'loading'
-    ? document.addEventListener('DOMContentLoaded', init)
-    : init();
+    ? document.addEventListener('DOMContentLoaded', wire)
+    : wire();
 })();

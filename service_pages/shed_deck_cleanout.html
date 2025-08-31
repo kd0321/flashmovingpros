@@ -15,7 +15,7 @@
   <header>
     <h1>Shed &amp; Deck Cleanout</h1>
     <p>Clear sheds, patios, and decks — yard waste and junk hauled away.</p>
-    <p class="rate-banner">Priced by truckload. Deck removals include a demolition surcharge of (+$100–$300).</p>
+    <p class="rate-banner">Priced by truckload (50% deposit fee). Deck removals include a demolition surcharge of (+$200).</p>
   </header>
 
   <div id="form-container">
@@ -48,6 +48,17 @@
         <option>Both</option>
       </select><br><br>
 
+       <label for="volume">Approximate Truckload:</label>
+     <select id="volume" name="volume">
+     <option value="">Select one</option>
+     <option value="few">Few Items — $150</option>
+     <option value="quarter">1/4 Truck — $300</option>
+     <option value="half">1/2 Truck — $500</option>
+     <option value="three-quarter">3/4 Truck — $650</option>
+     <option value="full">Full Truck — $850+</option>
+     </select>
+     <br><br>
+
       <label for="notes">Notes:</label>
       <textarea id="notes" name="notes" placeholder="Yard access, fencing, HOA rules, heavy items, etc."></textarea><br><br>
 
@@ -75,8 +86,9 @@
   <script src="/service_js/universal-mileage.js"></script>
   <script src="/service_js/mapbox.js"></script>
   <script src="/service_js/errordisplayer.js"></script>
-  <script src="/service_js/cost-caculator.js"></script>
+  <script src="/service_js/clj-caculator.js"></script>
   <script src="/service_js/bridge.js"></script>
+  <script src="/service_js/description.js"></script>
 
 </body>
 </html>
